@@ -1,20 +1,15 @@
 # -*- coding: utf-8 -*-
 # Gera as páginas de redirecionamento dos QR Codes.
-# Para mudar o destino de um QR Code: troque o link em DESTINOS, rode este script e publique.
+# Os destinos ficam em destinos.csv (caminho;titulo;destino;arquivo_no_drive).
+# Para mudar o destino de um QR Code: troque o link no CSV, rode este script e publique.
+import csv
 import os
 
 BASE = 'https://dagomarketplaces.github.io/listas'
+aqui = os.path.dirname(os.path.abspath(__file__))
 
-# caminho do QR Code -> (título, link de destino)
-DESTINOS = {
-    'invictus/nivel-2-premium': (
-        'Lista Nível 2 – Colégio Invictus – Premium',
-        # TESTE DRIVE - VERSAO 1.pdf (pasta de testes no Google Drive)
-        'https://drive.google.com/file/d/1RJkP8qg3PA5hj9gZkjpIWC2JIL8pAhO9/view'),
-    'invictus/nivel-2-economica': (
-        'Lista Nível 2 – Colégio Invictus – Econômica',
-        BASE + '/testes/orcamento-teste-nivel-2-economica.pdf'),
-}
+with open(os.path.join(aqui, 'destinos.csv'), encoding='utf-8') as f:
+    DESTINOS = {r['caminho']: (r['titulo'], r['destino']) for r in csv.DictReader(f, delimiter=';')}
 
 MODELO = '''<!doctype html>
 <html lang="pt-BR">
@@ -42,7 +37,6 @@ MODELO = '''<!doctype html>
 </html>
 '''
 
-aqui = os.path.dirname(os.path.abspath(__file__))
 for caminho, (titulo, url) in DESTINOS.items():
     pasta = os.path.join(aqui, *caminho.split('/'))
     os.makedirs(pasta, exist_ok=True)
