@@ -9,7 +9,8 @@ BASE = 'https://dagomarketplaces.github.io/listas'
 DESTINOS = {
     'invictus/nivel-2-premium': (
         'Lista Nível 2 – Colégio Invictus – Premium',
-        BASE + '/testes/orcamento-teste-nivel-2-premium.pdf'),
+        # TESTE DRIVE - VERSAO 1.pdf (pasta de testes no Google Drive)
+        'https://drive.google.com/file/d/1RJkP8qg3PA5hj9gZkjpIWC2JIL8pAhO9/view'),
     'invictus/nivel-2-economica': (
         'Lista Nível 2 – Colégio Invictus – Econômica',
         BASE + '/testes/orcamento-teste-nivel-2-economica.pdf'),
