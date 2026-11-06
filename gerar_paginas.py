@@ -40,7 +40,6 @@ MODELO = '''<!doctype html>
 for caminho, (titulo, url) in DESTINOS.items():
     pasta = os.path.join(aqui, *caminho.split('/'))
     os.makedirs(pasta, exist_ok=True)
-    with open(os.path.join(pasta, 'index.html'), 'w', encoding='utf-8', newline='
-') as f:
+    with open(os.path.join(pasta, 'index.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(MODELO.format(titulo=titulo, url=url, url_js='"' + url + '"'))
     print(f'{BASE}/{caminho}/  ->  {url}')
